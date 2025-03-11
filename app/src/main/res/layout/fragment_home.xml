@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".tv.fragments.HomeFragment">
 
     <TextView
         android:id="@+id/errorText"
@@ -32,7 +32,8 @@
     android:id="@+id/header_fragment"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-        app:layout_constraintHeight_percent=".47"
+        android:focusable="false"
+        app:layout_constraintHeight_percent=".5"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -42,10 +43,10 @@
         android:id="@+id/movies_list_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="-37dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".53"
+        app:layout_constraintHeight_percent=".5"
         app:layout_constraintTop_toBottomOf="@id/header_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HeaderFragment">
+    tools:context=".tv.fragments.HeaderFragment">
 
-    <!-- Горизонтальный градиент -->
+
     <View
         android:id="@+id/gradient_horizontal"
         android:layout_width="0dp"
@@ -21,7 +21,7 @@
         android:visibility="gone"
         android:background="@drawable/banner_gradient" />
 
-    <!-- Основной контейнер с элементами -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_header"
         android:layout_width="match_parent"

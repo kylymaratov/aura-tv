@@ -20,5 +20,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "tvapp"
+rootProject.name = "tskg"
 include(":app")

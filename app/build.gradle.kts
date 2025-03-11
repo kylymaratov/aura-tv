@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.tvapp"
+    namespace = "com.example.tskg"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.tvapp"
+        applicationId = "com.example.tskg"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

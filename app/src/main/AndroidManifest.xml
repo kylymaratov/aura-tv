@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
     <uses-feature
         android:name="android.software.leanback"
-        android:required="true" />
-
+        android:required="false" />
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-
-    <uses-feature android:name="android.hardware.type.television" android:required="true"/>
-
+    <uses-feature android:name="android.hardware.type.television" android:required="false"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -20,26 +16,33 @@
         android:banner="@mipmap/ic_launcher"
         android:icon="@mipmap/ic_launcher"
         android:label="TSKG"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.TvApp">
+      >
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".tv.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TvApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailsActivity"
-            android:exported="true">
+            android:name=".tv.DetailsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TvApp">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".VideoPlayerActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:name=".tv.VideoPlayerActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>

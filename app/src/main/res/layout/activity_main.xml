@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".tv.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,29 +13,41 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/nav_mock"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:focusable="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:descendantFocusability="afterDescendants"
             android:id="@+id/nav_categories"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:paddingHorizontal="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            android:background="#000"
+            android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent" />
-
+            app:layout_constraintStart_toEndOf="@id/container"
+            android:descendantFocusability="afterDescendants" />
 
         <FrameLayout
             android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/nav_categories"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/nav_categories"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

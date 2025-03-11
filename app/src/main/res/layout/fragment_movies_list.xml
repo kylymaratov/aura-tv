@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".fragments.MoviesListFragment"
+    tools:context=".tv.fragments.MoviesListFragment"
     >
 
     <androidx.fragment.app.FragmentContainerView
