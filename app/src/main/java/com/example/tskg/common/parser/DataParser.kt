@@ -14,6 +14,8 @@ class DataParser {
         return "/show?search=&categoryId=$category&genreId=0&networkId=0&year=0&countryCode=&isStarred=0&sortBy=updated&page=$page"
     }
 
+    fun getRandomMovies(limit: Int) { }
+
     fun parseHomePage(body: String, BASE_URL: String): MutableList<MoviesList> {
         val document: Document = Jsoup.parse(body)
         val container = document.select("#app-index-shows-new > .app-shows-item-full")

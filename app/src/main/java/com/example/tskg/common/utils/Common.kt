@@ -1,10 +1,9 @@
 package com.example.tskg.common.utils
 
 import android.content.Context
- import android.graphics.Rect
- import android.view.View
- import android.widget.TextView
- import androidx.recyclerview.widget.RecyclerView
+import android.graphics.Rect
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 class Common {
     companion object {
@@ -18,16 +17,24 @@ class Common {
             return (height * percent) / 100
         }
 
-        fun TextView.isEllipsized(ellipsize: (isEllipsized: Boolean) -> Unit) {
-            val lineCount = layout?.lineCount ?: 0
-            if (lineCount > 0) {
-                val ellipseCount = layout?.getEllipsisCount(lineCount - 1) ?: 0
-                ellipsize.invoke(ellipseCount > 0)
-            }
+        fun dpToPx(context: Context, dp: Int): Int {
+            val density = context.resources.displayMetrics.density
+            return (dp * density).toInt()
         }
-
-
     }
+
+
+    class HorizontalSpacingItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: android.graphics.Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            outRect.right = spacing
+        }
+    }
+
 
     class GridSpacingItemDecoration(
         private val spanCount: Int,

@@ -1,6 +1,5 @@
 package com.example.tskg.tv
 
-
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -20,7 +19,7 @@ import androidx.core.view.isGone
 class MainActivity : FragmentActivity() {
     private lateinit var navCategories: RecyclerView
     private lateinit var container: FrameLayout
-    private  lateinit var navMock: FrameLayout
+    private lateinit var navMock: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

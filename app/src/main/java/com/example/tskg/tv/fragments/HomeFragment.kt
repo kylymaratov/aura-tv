@@ -22,10 +22,10 @@ class HomeFragment: Fragment(R.layout.fragment_home){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getDataProcess(view)
-        setFramgents()
+        setFragments()
     }
 
-    private fun setFramgents() {
+    private fun setFragments() {
         val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.header_fragment, headerFragment)
         transaction.replace(R.id.movies_list_fragment, moviesListFragment)

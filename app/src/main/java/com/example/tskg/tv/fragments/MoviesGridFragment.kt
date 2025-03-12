@@ -1,10 +1,7 @@
 package com.example.tskg.tv.fragments
 
-import android.content.Context
- import android.os.Bundle
-import android.view.LayoutInflater
+import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,25 +13,17 @@ import com.example.tskg.tv.adapters.MovieGridAdapter
 import com.example.tskg.common.utils.Common
 import kotlinx.coroutines.launch
 
-class MoviesGridFragment : Fragment() {
-    private lateinit var recyclerView: RecyclerView
+class MoviesGridFragment : Fragment(R.layout.fragment_movies_grid) {
+    private lateinit var moviesGrid: RecyclerView
     private var categoryId: Int = 12
     private var pageId: Int = 1
     private lateinit var movies: MutableList<Movie>
     private var isEndOfListReached = false
     private var stopLoadMore: Boolean = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.fragment_movies_grid, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.movies_grid)
+        moviesGrid = view.findViewById(R.id.movies_grid)
         recycleEvents()
     }
 
@@ -43,7 +32,7 @@ class MoviesGridFragment : Fragment() {
         this.pageId = pageId
         this.movies = data
 
-        val adapter = recyclerView.adapter
+        val adapter = moviesGrid.adapter
         if (adapter is MovieGridAdapter) {
             adapter.updateMovies(data)
         } else {
@@ -52,34 +41,33 @@ class MoviesGridFragment : Fragment() {
     }
 
     fun clearMoviesData() {
-        val adapter = recyclerView.adapter
+        val adapter = moviesGrid.adapter
         if (adapter is MovieGridAdapter) {
             adapter.clearMovies()
         }
     }
 
     private fun drawMoviesData() {
-        val widthPerItem = dpToPx(requireContext(), 165)
-        val heightPerItem = dpToPx(requireContext(), 260)
+        val widthPerItem =  Common.dpToPx(requireContext(), 165)
+        val heightPerItem = Common.dpToPx(requireContext(), 260)
         val screenWidth = resources.displayMetrics.widthPixels
 
         val itemsPerRow = screenWidth / widthPerItem
 
-        val spacing = dpToPx(requireContext(), 10)
+        val spacing = Common.dpToPx(requireContext(), 10)
         val gridLayoutManager = GridLayoutManager(requireContext(), itemsPerRow)
 
-        recyclerView.addItemDecoration(Common.GridSpacingItemDecoration(itemsPerRow, spacing, true))
+        moviesGrid.addItemDecoration(Common.GridSpacingItemDecoration(itemsPerRow, spacing, true))
 
-        recyclerView.layoutManager = gridLayoutManager
+        moviesGrid.layoutManager = gridLayoutManager
 
         val adapter = MovieGridAdapter(movies, heightPerItem)
-        recyclerView.adapter = adapter
-
+        moviesGrid.adapter = adapter
     }
 
     private fun recycleEvents() {
         if (pageId != 0) {
-            recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            moviesGrid.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
@@ -109,7 +97,7 @@ class MoviesGridFragment : Fragment() {
                            movies.add(movie)
                        }
                    }
-                   recyclerView.adapter?.notifyItemRangeInserted(startPosition, data.movies.size)
+                   moviesGrid.adapter?.notifyItemRangeInserted(startPosition, data.movies.size)
                }
 
            } catch (error: Exception) {
@@ -120,11 +108,6 @@ class MoviesGridFragment : Fragment() {
                isEndOfListReached = false
            }
        }
-    }
-
-    private fun dpToPx(context: Context, dp: Int): Int {
-        val density = context.resources.displayMetrics.density
-        return (dp * density).toInt()
     }
 }
 
