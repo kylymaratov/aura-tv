@@ -18,7 +18,7 @@ import com.example.tskg.common.models.MenuItem
 import androidx.core.view.isGone
 
 class MainActivity : FragmentActivity() {
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var navCategories: RecyclerView
     private lateinit var container: FrameLayout
     private  lateinit var navMock: FrameLayout
 
@@ -27,11 +27,12 @@ class MainActivity : FragmentActivity() {
 
         setContentView(R.layout.activity_main)
         setFramgents()
-        recyclerView = findViewById(R.id.nav_categories)
+        navCategories = findViewById(R.id.nav_categories)
         container = findViewById(R.id.container)
         navMock = findViewById(R.id.nav_mock)
 
-        val categories = listOf(MenuItem(id = 1, title = "Главная"),
+        val categories = listOf(
+            MenuItem(id = 1, title = "Главная"),
             MenuItem(id = 2, title = "Поиск"),
             MenuItem(id = 12, title = "Аниме"),
             MenuItem(id = 19, title = "Сериалы"),
@@ -71,8 +72,8 @@ class MainActivity : FragmentActivity() {
             }
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = adapter
+        navCategories.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        navCategories.adapter = adapter
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -84,11 +85,10 @@ class MainActivity : FragmentActivity() {
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 if (navMock.isFocused) {
                     openOrCloseMenu()
-                    return true
                 }
             }
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                if (!recyclerView.isGone) {
+                if (!navCategories.isGone) {
                     openOrCloseMenu()
                 }
             }
@@ -97,12 +97,12 @@ class MainActivity : FragmentActivity() {
     }
 
     private fun openOrCloseMenu () {
-        if (recyclerView.isGone) {
-            recyclerView.visibility = View.VISIBLE
+        if (navCategories.isGone) {
+            navCategories.visibility = View.VISIBLE
             navMock.visibility = View.GONE
-            recyclerView.requestFocus()
+            navCategories.requestFocus()
          }else {
-            recyclerView.visibility = View.GONE
+            navCategories.visibility = View.GONE
             navMock.visibility = View.VISIBLE
         }
     }
