@@ -11,7 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.tskg.R
 import com.example.tskg.common.models.Movie
 
-class MovieListAdapter(private val movies: List<Movie>, private val itemHeight: Int) :
+class MovieListAdapter(private val movies: List<Movie>, private val itemHeight: Int, private val itemWidth: Int) :
     RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -20,6 +20,7 @@ class MovieListAdapter(private val movies: List<Movie>, private val itemHeight: 
 
         val params = view.layoutParams
         params.height = itemHeight
+        params.width = itemWidth
 
         view.layoutParams = params
 
@@ -39,7 +40,7 @@ class MovieListAdapter(private val movies: List<Movie>, private val itemHeight: 
 
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val movieTitle: TextView = itemView.findViewById(R.id.movie_title)
-        private val moviePoster: ImageView = itemView.findViewById(R.id.poster_image)
+        private val moviePoster: ImageView = itemView.findViewById(R.id.movie_poster)
 
         fun bind(movie: Movie) {
             movieTitle.text = movie.title

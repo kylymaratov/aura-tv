@@ -53,7 +53,7 @@ android {
             variant.outputs
                 .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
                 .forEach { output ->
-                    val outputFileName = "TSKG-TV-${variant.baseName}-${variant.versionName}-${variant.versionCode}.apk"
+                    val outputFileName = "TSKG-${variant.baseName}-${variant.versionName}-${variant.versionCode}.apk"
                     output.outputFileName = outputFileName
                 }
         }
@@ -82,13 +82,14 @@ dependencies {
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.leanback)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     implementation("com.google.android.exoplayer:exoplayer:2.19.1")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     implementation("org.jsoup:jsoup:1.14.3")
     implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+    implementation("com.google.android.material:material:1.11.0")
 }

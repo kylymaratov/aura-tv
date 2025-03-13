@@ -1,11 +1,12 @@
 <resources>
     <style name="Theme.TvApp" parent="@style/Theme.Leanback">
         <item name="android:windowBackground">#0F0F0F</item>
-    </style>
-    <style name="ShapeAppearance.App.CornerSize" parent="">
-        <item name="cornerSize">100dp</item>
+     </style>
+    <style name="Theme.MobileApp" parent="@style/Theme.MaterialComponents.DayNight">
+        <item name="android:background">#000</item>
     </style>
      <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
+        <item name="android:windowBackground">#000</item>
+         <item name="cornerRadius">30dp</item>
+     </style>
 </resources>

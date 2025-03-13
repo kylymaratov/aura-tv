@@ -18,13 +18,13 @@ class HomeFragment: Fragment(R.layout.fragment_mobile_home){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getDataProcess(view)
+        setFragments()
+
     }
 
     private fun setFragments() {
         val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.mobile_movies_list, moviesListFragment)
-
+        transaction.replace(R.id.mobile_content, moviesListFragment)
         transaction.commit()
     }
 
@@ -36,7 +36,9 @@ class HomeFragment: Fragment(R.layout.fragment_mobile_home){
             try{
                 progressBar.visibility = ProgressBar.VISIBLE
                 val movies = getData()
-                moviesListFragment.setMovies(movies[0])
+                movies.forEach { It ->
+                    moviesListFragment.setMovies(It)
+                }
             } catch(error: Exception) {
                 errorText.visibility = TextView.VISIBLE
                 errorText.text = error.message

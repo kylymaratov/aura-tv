@@ -8,6 +8,17 @@
     android:orientation="vertical"
     tools:context=".mobile.MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_menu"
+        android:titleTextColor="@color/color_white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/top_app_bar_menu"
+        app:title="Главная"
+        />
     <FrameLayout
         android:id="@+id/mobile_container"
         android:layout_width="match_parent"
