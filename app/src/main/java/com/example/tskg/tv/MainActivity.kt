@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tskg.R
-import com.example.tskg.tv.adapters.MenuAdapter
+import com.example.tskg.common.adapters.MenuAdapter
 import com.example.tskg.tv.fragments.CategoryFragment
 import com.example.tskg.tv.fragments.HomeFragment
 import com.example.tskg.tv.fragments.SearchFragment
@@ -25,7 +25,7 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        setFramgents()
+        setFragments()
         navCategories = findViewById(R.id.nav_categories)
         container = findViewById(R.id.container)
         navMock = findViewById(R.id.nav_mock)
@@ -56,7 +56,7 @@ class MainActivity : FragmentActivity() {
 
         val adapter = MenuAdapter(categories) {item ->
             if (item.id == 1) {
-                setFramgents()
+                setFragments()
             }else if(item.id == 2) {
                 val searchFragment = SearchFragment()
                 changeFragment(searchFragment)
@@ -112,7 +112,7 @@ class MainActivity : FragmentActivity() {
         transaction.commit()
     }
 
-    private fun setFramgents() {
+    private fun setFragments() {
         val homeFragment = HomeFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, homeFragment)

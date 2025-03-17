@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.tskg.MyApplication
 import com.example.tskg.R
 import com.example.tskg.common.models.Movie
- import com.example.tskg.common.models.MoviesList
+import com.example.tskg.common.models.MoviesList
 import com.example.tskg.common.parser.DataParser
 import kotlinx.coroutines.launch
 
@@ -39,8 +39,8 @@ class HomeFragment: Fragment(R.layout.fragment_home){
     }
 
     private fun getDataProcess(view: View) {
-        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
-        val errorText =  view.findViewById<TextView>(R.id.errorText)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
+        val errorText =  view.findViewById<TextView>(R.id.error_text)
 
         lifecycleScope.launch {
             try{

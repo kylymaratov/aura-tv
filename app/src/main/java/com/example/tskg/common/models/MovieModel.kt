@@ -36,8 +36,8 @@ data class MovieDetails (
     val description: String
 ) : Parcelable
 
-
+@Parcelize
 data class MoviesList(
     val title: String,
     val movies: MutableList<Movie>
-)
+): Parcelable

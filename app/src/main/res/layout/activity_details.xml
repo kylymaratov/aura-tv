@@ -7,16 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".tv.DetailsActivity">
 
-
-   <TextView
-       android:id="@+id/errorText"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:visibility="gone"
-       android:textColor="@android:color/holo_red_dark"
-       android:textSize="16sp"
-       android:gravity="center" />
-
+   <include layout="@layout/fragment_loading" />
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:id="@+id/header_fragment"

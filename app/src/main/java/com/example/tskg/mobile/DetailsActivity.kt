@@ -1,24 +1,26 @@
-package com.example.tskg.tv.fragments
+package com.example.tskg.mobile
 
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.example.tskg.MyApplication
 import com.example.tskg.R
+import com.example.tskg.tv.fragments.HeaderFragment
+import com.example.tskg.tv.fragments.SeriesListFragment
 import com.example.tskg.common.models.Movie
 import com.example.tskg.common.utils.Common
+import kotlinx.coroutines.launch
 
-class HeaderFragment : Fragment() {
+class DetailsActivity : FragmentActivity(R.layout.activity_mobile_details) {
     lateinit var movieTitle: TextView
     lateinit var movieGenre: TextView
     lateinit var movieDescription: TextView
@@ -27,19 +29,10 @@ class HeaderFragment : Fragment() {
     lateinit var gradientBanner: View
     lateinit var backButton: Button
 
-    private var isInitialized: Boolean = false
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_header, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+        val errText = findViewById<TextView>(R.id.error_text)
         val headerLayout: ConstraintLayout = view.findViewById(R.id.layout_header)
         val infoLayout: ConstraintLayout = headerLayout.findViewById(R.id.layout_info)
 
@@ -51,23 +44,26 @@ class HeaderFragment : Fragment() {
         gradientBanner = view.findViewById(R.id.gradient_horizontal)
         backButton = view.findViewById(R.id.button_back)
 
-        backButton.setOnClickListener{
-            activity?.onBackPressed()
-        }
+        val movie = intent.getParcelableExtra<Movie>("movie") as Movie
 
-        isInitialized = true
+        lifecycleScope.launch {
+            if (movie.details === null) {
+                try {
+                    movie.details = (application as MyApplication).getMovieDetails(movie)
+                } catch (error: Exception) {
+                    errText.text = error.message
+                    errText.visibility
+                    movie.details = null
+                }
+            }
+
+            setMovieData(movie)
+        }
     }
 
 
 
     fun updateBanner(movie: Movie, showBackButton: Boolean = false) {
-        if (!isInitialized) {
-            Handler(Looper.getMainLooper()).post {
-                updateBanner(movie, showBackButton)
-            }
-            return
-        }
-
         if (showBackButton) {
             backButton.visibility = View.VISIBLE
         }

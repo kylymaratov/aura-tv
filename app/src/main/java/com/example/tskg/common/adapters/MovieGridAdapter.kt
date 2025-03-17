@@ -1,4 +1,4 @@
-package com.example.tskg.tv.adapters
+package com.example.tskg.common.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater

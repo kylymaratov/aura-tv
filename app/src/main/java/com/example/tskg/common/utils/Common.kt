@@ -3,7 +3,10 @@ package com.example.tskg.common.utils
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tskg.R
 
 class Common {
     companion object {
@@ -20,6 +23,26 @@ class Common {
         fun dpToPx(context: Context, dp: Int): Int {
             val density = context.resources.displayMetrics.density
             return (dp * density).toInt()
+        }
+
+        fun fadeInView(view: View) {
+            val fadeIn = AnimationUtils.loadAnimation(view.context, R.anim.fade_in)
+            view.startAnimation(fadeIn)
+        }
+
+        fun fadeOutView(view: View) {
+            val fadeOut = AnimationUtils.loadAnimation(view.context, R.anim.fade_out)
+            view.startAnimation(fadeOut)
+        }
+
+        fun fadeInImage(imageView: ImageView) {
+            val fadeIn = AnimationUtils.loadAnimation(imageView.context, R.anim.fade_in)
+            imageView.startAnimation(fadeIn)
+        }
+
+        fun fadeOutImage(imageView: ImageView) {
+            val fadeOut = AnimationUtils.loadAnimation(imageView.context, R.anim.fade_out)
+            imageView.startAnimation(fadeOut)
         }
     }
 
@@ -61,5 +84,7 @@ class Common {
             }
         }
     }
+
+
 
 }

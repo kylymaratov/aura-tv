@@ -18,7 +18,7 @@ class DetailsActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
-        val errText = findViewById<TextView>(R.id.errorText)
+        val errText = findViewById<TextView>(R.id.error_text)
         val movie = intent.getParcelableExtra<Movie>("movie") as Movie
 
         lifecycleScope.launch {

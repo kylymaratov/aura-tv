@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.tskg.MyApplication
 import com.example.tskg.R
 import com.example.tskg.common.models.Movie
-import com.example.tskg.tv.adapters.MovieGridAdapter
+import com.example.tskg.common.adapters.MovieGridAdapter
 import com.example.tskg.common.utils.Common
 import kotlinx.coroutines.launch
 
@@ -78,7 +78,7 @@ class MoviesGridFragment : Fragment(R.layout.fragment_movies_grid) {
 
                     if (!isEndOfListReached && lastVisibleItemPosition == totalItemCount - 1) {
                         isEndOfListReached = true
-                        loadMoreMovies( )
+                        loadMoreMovies()
                     }
                 }
             })
