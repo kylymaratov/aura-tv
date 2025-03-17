@@ -58,8 +58,6 @@ class HeaderFragment : Fragment() {
         isInitialized = true
     }
 
-
-
     fun updateBanner(movie: Movie, showBackButton: Boolean = false) {
         if (!isInitialized) {
             Handler(Looper.getMainLooper()).post {

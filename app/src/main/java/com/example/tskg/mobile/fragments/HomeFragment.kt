@@ -8,14 +8,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tskg.MyApplication
 import com.example.tskg.R
-import com.example.tskg.common.models.Movie
 import com.example.tskg.common.models.MoviesList
 import com.example.tskg.common.parser.DataParser
 import com.google.android.material.tabs.TabLayout

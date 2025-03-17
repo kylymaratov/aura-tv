@@ -26,7 +26,6 @@ import kotlinx.coroutines.launch
 class SeriesListFragment : RowsSupportFragment() {
     private var itemSelectedListener: ((MovieDetails) -> Unit)? = null
 
-
     private val listRowPresenter = object : ListRowPresenter(FocusHighlight.ZOOM_FACTOR_SMALL) {
         override fun isUsingDefaultListSelectEffect(): Boolean {
             return true

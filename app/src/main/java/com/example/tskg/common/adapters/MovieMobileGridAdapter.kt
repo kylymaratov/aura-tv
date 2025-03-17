@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.tskg.tv.DetailsActivity
+import com.example.tskg.mobile.DetailsActivity
 import com.example.tskg.R
 import com.example.tskg.common.models.Movie
 

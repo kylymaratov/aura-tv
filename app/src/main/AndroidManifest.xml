@@ -67,6 +67,7 @@
         <activity
             android:name=".tv.VideoPlayerActivity"
             android:exported="true"
+            android:screenOrientation="landscape"
             android:theme="@style/Theme.Material3.Dark.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
