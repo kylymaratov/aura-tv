@@ -6,21 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".mobile.MainActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/top_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        app:navigationIcon="@drawable/ic_menu"
-        app:menu="@menu/top_app_bar_menu"
-        app:title="Главная"
-        app:layout_constraintTop_toTopOf="parent" />
+   <com.google.android.material.appbar.AppBarLayout
+       android:id="@+id/app_bar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       >
+       <com.google.android.material.appbar.MaterialToolbar
+           android:id="@+id/material_toolbar"
+           android:layout_width="match_parent"
+           android:layout_height="?attr/actionBarSize"
+           android:elevation="4dp"
+           app:navigationIcon="@drawable/ic_menu"
+           app:menu="@menu/top_app_bar_menu"
+           app:title="Главная"
+            />
+   </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/mobile_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/top_app_bar"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -29,6 +29,18 @@ class MoviesGridFragment: Fragment(R.layout.fragment_mobile_movies_list) {
         return view
     }
 
+    fun setMovies(movies: MoviesList) {
+        bindMovies(movies)
+    }
+
+    fun clearMovies() {
+        val adapter = mobileMoviesGrid.adapter
+
+        if (adapter is MovieMobileGridAdapter) {
+            adapter.clearMovies()
+        }
+    }
+
     private fun bindMovies(movies: MoviesList) {
         val widthPerItem =  Common.dpToPx(requireContext(), 130)
         val heightPerItem = Common.dpToPx(requireContext(), 220)
@@ -46,6 +58,7 @@ class MoviesGridFragment: Fragment(R.layout.fragment_mobile_movies_list) {
         val adapter = MovieMobileGridAdapter(movies.movies, heightPerItem)
         mobileMoviesGrid.adapter = adapter
     }
+
 
     companion object {
         fun newInstance(movies: MoviesList): MoviesGridFragment {

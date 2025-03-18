@@ -56,4 +56,9 @@ class MovieMobileGridAdapter(private val movies: MutableList<Movie>, private val
             itemView.setOnFocusChangeListener { _, hasFocus -> }
         }
     }
+
+    fun clearMovies() {
+        movies.clear()
+        notifyDataSetChanged()
+    }
 }

@@ -47,6 +47,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".mobile.SearchActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MobileApp"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".tv.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.TvApp">

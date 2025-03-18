@@ -37,8 +37,6 @@
             app:layout_constraintTop_toTopOf="@id/layout_header"
             />
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/error_message"

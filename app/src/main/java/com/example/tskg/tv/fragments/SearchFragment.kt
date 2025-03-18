@@ -25,8 +25,8 @@ import com.example.tskg.common.models.Movie
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
-    lateinit var progress_bar: ProgressBar
-    lateinit var error_message: TextView
+    lateinit var progressBar: ProgressBar
+    lateinit var errorText: TextView
     lateinit var searchEditText: EditText
 
     lateinit var moviesGridFragment: MoviesGridFragment
@@ -63,8 +63,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        error_message = view.findViewById(R.id.error_message)
-        progress_bar  = view.findViewById(R.id.progress_bar)
+        errorText = view.findViewById(R.id.error_message)
+        progressBar  = view.findViewById(R.id.progress_bar)
 
         searchEditText = view.findViewById(R.id.search_edit_text)
 
@@ -103,9 +103,11 @@ class SearchFragment : Fragment() {
         if (query.length > 2) {
             lifecycleScope.launch {
                 try {
-                    progress_bar.visibility = View.VISIBLE
-                    error_message.text = ""
+                    progressBar.visibility = View.VISIBLE
+                    errorText.text = ""
+                    errorText.visibility = View.GONE
                     val jsonRequest = (requireActivity().application as MyApplication).jsonRequest
+                    val baseUrl = (requireActivity().application as MyApplication).BASE_URL
 
                     val response = jsonRequest.search("/shows/search/$query")
 
@@ -120,7 +122,7 @@ class SearchFragment : Fragment() {
                                         movieId = item.url,
                                         title = item.name,
                                         year = "",
-                                        posterUrl = item.url,
+                                        posterUrl = "$baseUrl${item.url.replace("/show/", "/posters/")}.png",
                                         details = null,
                                         genre = "",
                                         country = ""
@@ -135,9 +137,10 @@ class SearchFragment : Fragment() {
                     }
                 } catch (error: Exception) {
                     moviesGridFragment.clearMoviesData()
-                    error_message.text = error.message
+                    errorText.text = error.message
+                    errorText.visibility = View.VISIBLE
                 }finally {
-                    progress_bar.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                 }
             }
         }
@@ -148,7 +151,6 @@ class SearchFragment : Fragment() {
         transaction.add(R.id.movies_list_fragment, moviesGridFragment)
         transaction.commit()
     }
-
 
     private fun setSearchResult(movies: MutableList<Movie>) {
         moviesGridFragment.bindMoviesData(movies, 0, 0)
