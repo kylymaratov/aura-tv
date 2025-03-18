@@ -11,7 +11,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:banner="@mipmap/splash_screen"
+        android:banner="@mipmap/ic_launcher"
         android:icon="@mipmap/ic_launcher"
         android:label="TSKG"
         android:launchMode="singleTask"
@@ -29,6 +29,7 @@
         <activity
             android:name=".mobile.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MobileApp"
             >
             <intent-filter>
@@ -39,6 +40,7 @@
         <activity
             android:name=".mobile.DetailsActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MobileApp"
             >
             <intent-filter>
@@ -49,6 +51,7 @@
         <activity
             android:name=".mobile.SearchActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MobileApp"
             >
             <intent-filter>

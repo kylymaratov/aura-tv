@@ -1,11 +1,10 @@
 package com.example.tskg.mobile
 
-
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
@@ -18,11 +17,11 @@ import com.example.tskg.common.models.MoviesList
 import com.example.tskg.mobile.fragments.MoviesGridFragment
 import kotlinx.coroutines.launch
 
-
 class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
     private lateinit var searchView: SearchView
     private lateinit var errorText: TextView
     private  lateinit var progressBar: ProgressBar
+    private  lateinit var searchBg: ImageView
 
     private val moviesGridFragment: MoviesGridFragment = MoviesGridFragment()
 
@@ -34,6 +33,7 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
         searchView = findViewById(R.id.search_view)
         progressBar = findViewById(R.id.progress_bar)
         errorText = findViewById(R.id.error_text)
+        searchBg = findViewById(R.id.search_bg)
 
         setFragments()
 
@@ -109,10 +109,10 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
                     errorText.text = error.message
                     errorText.visibility = View.VISIBLE
                 }finally {
+                    searchBg.visibility = View.GONE
                     progressBar.visibility = View.GONE
                 }
             }
         }
     }
-
 }
