@@ -37,6 +37,8 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
 
         setFragments()
 
+        searchView.requestFocus()
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {

@@ -17,10 +17,9 @@
         android:contentDescription="TODO"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.35" />
+        app:layout_constraintBottom_toTopOf="@id/layout_info"
+        app:layout_constraintHeight_percent="0.25" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_info"
@@ -28,7 +27,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/movie_cover"
         android:layout_margin="5dp"
-        android:paddingTop="20dp">
+        android:paddingVertical="10dp">
 
         <TextView
             android:id="@+id/movie_title"
@@ -87,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="#000"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         app:tabSelectedTextColor="#6bf9b7"
         app:tabTextColor="#fff"
         app:tabMode="auto"

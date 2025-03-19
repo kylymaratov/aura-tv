@@ -80,6 +80,18 @@ class HeaderFragment : Fragment() {
 
         gradientBanner.visibility = View.VISIBLE
 
+        if (movie.year.isEmpty() && movie.country?.isEmpty() == true) {
+            movieAdditionalInfo.visibility = View.GONE
+        }else {
+            movieAdditionalInfo.visibility = View.VISIBLE
+        }
+
+        if (movieGenre.text.isEmpty()) {
+            movieGenre.visibility = View.GONE
+        } else {
+            movieGenre.visibility = View.VISIBLE
+        }
+
         Common.fadeInView(gradientBanner)
 
         Common.fadeOutImage(movieCover)

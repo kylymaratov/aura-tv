@@ -39,7 +39,7 @@ class CategoryFragment : Fragment(R.layout.fragment_category) {
         lifecycleScope.launch {
             try{
                 progressBar.visibility = View.VISIBLE
-                val data = (requireActivity().application as MyApplication).getCategoryData(categoryId, 1)
+                 val data = (requireActivity().application as MyApplication).getCategoryData(categoryId, 1)
                  categoryText.text = categoryTitle
             } catch(error: Exception) {
                 errorText.visibility = TextView.VISIBLE

@@ -96,6 +96,18 @@ class DetailsActivity : FragmentActivity(R.layout.activity_mobile_details) {
         movieDescription.text = movie.details?.description
         movieAdditionalInfo.text = "Год: " + movie.year + " | " + "Сезонов: " + movie.details?.seasons?.size + " | " + "Страна: ${movie.country}"
 
+        if (movie.year.isEmpty() && movie.country?.isEmpty() == true) {
+            movieAdditionalInfo.visibility = View.GONE
+        }else {
+            movieAdditionalInfo.visibility = View.VISIBLE
+        }
+
+        if (movieGenre.text.isEmpty()) {
+            movieGenre.visibility = View.GONE
+        } else {
+            movieGenre.visibility = View.VISIBLE
+        }
+
         Common.fadeOutImage(movieCover)
         Glide.with(this).load(movie.posterUrl).diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(false).into(movieCover)
