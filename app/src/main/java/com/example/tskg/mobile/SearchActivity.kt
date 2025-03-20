@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.lifecycleScope
 import com.example.tskg.MyApplication
 import com.example.tskg.R
@@ -23,8 +24,6 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
     private  lateinit var progressBar: ProgressBar
     private  lateinit var searchBg: ImageView
 
-    private val moviesGridFragment: MoviesGridFragment = MoviesGridFragment()
-
     private var runnable: Runnable? = null
     private val handler = Handler(Looper.getMainLooper())
 
@@ -34,8 +33,6 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
         progressBar = findViewById(R.id.progress_bar)
         errorText = findViewById(R.id.error_text)
         searchBg = findViewById(R.id.search_bg)
-
-        setFragments()
 
         searchView.requestFocus()
 
@@ -61,17 +58,11 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
         })
     }
 
-    private fun setFragments() {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.search_result, moviesGridFragment)
-        transaction.commit()
-    }
 
     private fun performSearch(query: String) {
         if (query.length > 2) {
             lifecycleScope.launch {
                 try {
-                    moviesGridFragment.clearMovies()
                     progressBar.visibility = View.VISIBLE
                     errorText.text = ""
                     errorText.visibility = View.GONE
@@ -100,14 +91,17 @@ class SearchActivity: FragmentActivity(R.layout.activity_mobile_search) {
                             }
                             val result = MoviesList(title = "", movies = movies)
 
-                            moviesGridFragment.setMovies(result)
+                            val moviesGridInstance = MoviesGridFragment.newInstance(result)
+
+                            val transaction = supportFragmentManager.beginTransaction()
+                            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                            transaction.add(R.id.search_result, moviesGridInstance)
+                            transaction.commit()
                         }else {
                             throw IllegalStateException("Не удалось ничего найти по запросу: $query")
                         }
-
                     }
                 } catch (error: Exception) {
-                    moviesGridFragment.clearMovies()
                     errorText.text = error.message
                     errorText.visibility = View.VISIBLE
                 }finally {

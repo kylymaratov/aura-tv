@@ -1,9 +1,13 @@
 package com.example.tskg.tv
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.KeyEvent
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,11 +19,14 @@ import com.example.tskg.tv.fragments.HomeFragment
 import com.example.tskg.tv.fragments.SearchFragment
 import com.example.tskg.common.models.MenuItem
 import androidx.core.view.isGone
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
-class MainActivity : FragmentActivity() {
+class MainActivity : FragmentActivity(R.layout.activity_main) {
     private lateinit var navCategories: RecyclerView
     private lateinit var container: FrameLayout
     private lateinit var navMock: FrameLayout
+    private lateinit var hintText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +36,7 @@ class MainActivity : FragmentActivity() {
         navCategories = findViewById(R.id.nav_categories)
         container = findViewById(R.id.container)
         navMock = findViewById(R.id.nav_mock)
+        hintText = findViewById(R.id.hint_text)
 
         val categories = listOf(
             MenuItem(id = 1, title = "Главная"),
@@ -41,7 +49,6 @@ class MainActivity : FragmentActivity() {
             MenuItem(id = 18, title = "Турецкие фильмы"),
             MenuItem(id = 29, title = "Южная Корея"),
             MenuItem(id = 8, title = "Британские"),
-            MenuItem(id = 6, title = "Европейские"),
             MenuItem(id = 31, title = "Китай"),
             MenuItem(id = 30, title = "Япония"),
             MenuItem(id = 4, title = "Российские"),
@@ -71,8 +78,10 @@ class MainActivity : FragmentActivity() {
             }
         }
 
+
         navCategories.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         navCategories.adapter = adapter
+
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -104,6 +113,7 @@ class MainActivity : FragmentActivity() {
             navCategories.visibility = View.GONE
             navMock.visibility = View.VISIBLE
         }
+        hintText.text = ""
     }
 
     private fun changeFragment(fragment: Fragment) {

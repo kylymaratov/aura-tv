@@ -1,14 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     >
-    <item
-        android:id="@+id/go_search_button"
-        android:title="Главная"
-        android:icon="@drawable/ic_home"
-        />
-    <item
-        android:id="@+id/go_category"
-        android:title="Категории"
-        android:icon="@drawable/ic_category"
-        />
+
 </menu>

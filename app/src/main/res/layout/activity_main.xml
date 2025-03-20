@@ -26,6 +26,18 @@
             app:layout_constraintStart_toStartOf="parent"
             />
 
+        <TextView
+            android:id="@+id/hint_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Чтобы открыть меню нажмите кнопку меню на пульте или пройдите в левый край"
+            tools:ignore="MissingConstraints"
+            android:elevation="999dp"
+            app:layout_constraintStart_toEndOf="@+id/nav_mock"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="10sp"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/nav_categories"
             android:layout_width="wrap_content"
