@@ -1,6 +1,9 @@
 package com.example.tskg.tv
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.GestureDetector
+import android.view.MotionEvent
 
 import android.view.View
 import android.widget.Button
@@ -27,6 +30,8 @@ class VideoPlayerActivity : AppCompatActivity() {
     private lateinit var episode_source_list: List<String>
     private lateinit var movieTitle: TextView
     private var currentEpisodeIndex: Int = 0
+    private lateinit var leftOverlay: View
+    private lateinit var rightOverlay: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,8 @@ class VideoPlayerActivity : AppCompatActivity() {
         playerView.player = player
         error_container = findViewById(R.id.error_container)
         retryButton = error_container.findViewById(R.id.retry_button)
+        leftOverlay = findViewById(R.id.left_overlay)
+        rightOverlay = findViewById(R.id.right_overlay)
 
 
         if (episode_source_list.isNotEmpty()) {
@@ -57,6 +64,8 @@ class VideoPlayerActivity : AppCompatActivity() {
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                     View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+        setupGestureControls()
 
     }
 
@@ -85,6 +94,34 @@ class VideoPlayerActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setupGestureControls() {
+        val leftDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDoubleTap(e: MotionEvent): Boolean {
+                player.seekBack()
+                return true
+            }
+        })
+
+        val rightDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDoubleTap(e: MotionEvent): Boolean {
+                player.seekForward()
+                return true
+            }
+        })
+
+        leftOverlay.setOnTouchListener { _, event ->
+            leftDetector.onTouchEvent(event)
+            true
+        }
+
+        rightOverlay.setOnTouchListener { _, event ->
+            rightDetector.onTouchEvent(event)
+            true
+        }
     }
 
     private fun setupPlayerListener(episodeUrl: String) {
